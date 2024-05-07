@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import styles from './page.module.scss';
+import { v4 as uuidv4 } from 'uuid';
 
 import Navbar from './components/Navbar';
 import AddButton from './components/AddButton';
@@ -48,6 +49,32 @@ export default function Home() {
     },
   ]);
 
+  const [value, setValue] = useState();
+  const [description, setDescription] = useState('');
+
+  const handleChange = (event) => {
+    switch (event.target.name) {
+      case 'value':
+        setValue(event.target.value);
+        break;
+      case 'description':
+        setDescription(event.target.value);
+        break;
+    }
+  };
+
+  async function onSubmit(event) {
+    event.preventDefault();
+    let newEntry = {
+      id: uuidv4(),
+      date: 10,
+      description: description,
+      category: 'Monthly Basic',
+      value: parseFloat(value),
+    };
+    setEntryList((entryList) => [...entryList, newEntry]);
+  }
+
   const addEntry = null;
 
   return (
@@ -59,6 +86,43 @@ export default function Home() {
         </div>
         <Summary entryList={entryList} />
         <EntriesList entryList={entryList} />
+        <div className={styles.formWrapper}>
+          <form onSubmit={onSubmit} className={styles.form}>
+            <label>
+              Date:
+              <input aria-label="date" type="date" id="date" name="date" />
+            </label>
+            <label>
+              Description:
+              <input
+                type="text"
+                id="description"
+                name="description"
+                onChange={handleChange}
+              />
+            </label>
+            <label>
+              Category:
+              <select>
+                {/* value={this.state.value} onChange={this.handleChange} */}
+                <option value="grapefruit">Grapefruit</option>
+                <option value="lime">Lime</option>
+                <option value="coconut">Coconut</option>
+                <option value="mango">Mango</option>
+              </select>
+            </label>
+            <label>
+              Value:
+              <input
+                type="text"
+                id="value"
+                name="value"
+                onChange={handleChange}
+              />
+            </label>
+            <button type="submit">submit</button>
+          </form>
+        </div>
       </div>
       <AddButton />
     </main>

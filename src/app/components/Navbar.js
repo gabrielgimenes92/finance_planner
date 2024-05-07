@@ -8,23 +8,35 @@ const Navbar = () => {
   return (
     <div>
       <nav className={styles.navbarWrapper}>
-        <img src="https://picsum.photos/200" alt="" />
+        <img src="https://picsum.photos/48" alt="" className={styles.logo} />
         <ul className={styles.navbar}>
           <li>
-            <a href="#">link</a>
+            <a href="#"></a>
           </li>
           <li>
-            <a href="#">link</a>
+            <a href="#"></a>
           </li>
           <li>
-            <a href="#">link</a>
+            <a href="#"></a>
           </li>
           <li>
-            <a href="#">link</a>
+            <a href="#"></a>
           </li>
-          <a>
-            <FontAwesomeIcon icon={faBurger} />
-          </a>
+          <li>
+            <a href="#"></a>
+          </li>
+        </ul>
+        <div className={styles.space}></div>
+        <ul className={styles.socialLinks}>
+          <li>
+            <a href="#"></a>
+          </li>
+          <li>
+            <a href="#"></a>
+          </li>
+          <li>
+            <a href="#"></a>
+          </li>
         </ul>
       </nav>
     </div>
