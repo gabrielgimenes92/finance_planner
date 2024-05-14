@@ -3,6 +3,8 @@
 import Image from 'next/image';
 import styles from './page.module.scss';
 import { v4 as uuidv4 } from 'uuid';
+//import DatePicker from 'react-date-picker';
+import Calendar from 'react-calendar';
 
 import Navbar from './components/Navbar';
 import AddButton from './components/AddButton';
@@ -11,6 +13,12 @@ import { useState } from 'react';
 import Summary from './components/Summary';
 
 export default function Home() {
+  const [date, setDate] = useState(Date());
+  const [value, setValue] = useState();
+  const [description, setDescription] = useState('');
+  const [category, setCategory] = useState('');
+  const [addModal, setAddModal] = useState(false);
+
   const [entryList, setEntryList] = useState([
     {
       id: 1,
@@ -49,11 +57,10 @@ export default function Home() {
     },
   ]);
 
-  const [value, setValue] = useState();
-  const [description, setDescription] = useState('');
-
   const handleChange = (event) => {
     switch (event.target.name) {
+      case 'category':
+        break;
       case 'value':
         setValue(event.target.value);
         break;
@@ -63,11 +70,32 @@ export default function Home() {
     }
   };
 
+  const toggleAddModal = () => {
+    console.log(addModal);
+    setAddModal(!addModal);
+  };
+
+  // const createDate = (selectedDate) => {
+  //   let local = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  //   let newDate = new Date(selectedDate);
+  //   setDate(
+  //     newDate.toLocaleString('en-US', {
+  //       timeZone: local,
+  //     })
+  //   );
+  // };
+
+  const checkDate = () => {
+    console.log(date);
+  };
+
   async function onSubmit(event) {
     event.preventDefault();
+    let dateString = `${date.getDate()}`;
+    console.log(dateString);
     let newEntry = {
       id: uuidv4(),
-      date: 10,
+      date: dateString,
       description: description,
       category: 'Monthly Basic',
       value: parseFloat(value),
@@ -86,11 +114,14 @@ export default function Home() {
         </div>
         <Summary entryList={entryList} />
         <EntriesList entryList={entryList} />
+      </div>
+      <AddButton toggleAddModal={toggleAddModal} />
+      {addModal ? (
         <div className={styles.formWrapper}>
           <form onSubmit={onSubmit} className={styles.form}>
             <label>
               Date:
-              <input aria-label="date" type="date" id="date" name="date" />
+              <Calendar onChange={setDate} value={date} />
             </label>
             <label>
               Description:
@@ -123,8 +154,9 @@ export default function Home() {
             <button type="submit">submit</button>
           </form>
         </div>
-      </div>
-      <AddButton />
+      ) : (
+        <></>
+      )}
     </main>
   );
 }
