@@ -9,7 +9,7 @@ import Calendar from 'react-calendar';
 import Navbar from './components/Navbar';
 import AddButton from './components/AddButton';
 import EntriesList from './components/EntriesList';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Summary from './components/Summary';
 
 export default function Home() {
@@ -57,6 +57,12 @@ export default function Home() {
     },
   ]);
 
+  const [summary, setSummary] = useState({
+    income: 0,
+    expense: 0,
+    total: 0,
+  });
+
   const handleChange = (event) => {
     switch (event.target.name) {
       case 'category':
@@ -101,9 +107,30 @@ export default function Home() {
       value: parseFloat(value),
     };
     setEntryList((entryList) => [...entryList, newEntry]);
+    updateSummary();
   }
 
-  const addEntry = null;
+  useEffect(() => {
+    console.log('updated');
+    updateSummary();
+  }, []);
+
+  const updateSummary = () => {
+    let incomeTemp = 0;
+    let expenseTemp = 0;
+    entryList.forEach((element) => {
+      if (element.value < 0) {
+        expenseTemp += element.value;
+      } else {
+        incomeTemp += element.value;
+      }
+    });
+    setSummary({
+      income: incomeTemp,
+      expense: expenseTemp,
+      total: incomeTemp + expenseTemp,
+    });
+  };
 
   return (
     <main className={styles.main}>
@@ -112,7 +139,7 @@ export default function Home() {
         <div className={styles.selectedMonth}>
           <h1> &lt; Month &gt;</h1>
         </div>
-        <Summary entryList={entryList} />
+        <Summary summary={summary} updateSummary={updateSummary} />
         <EntriesList entryList={entryList} />
       </div>
       <AddButton toggleAddModal={toggleAddModal} />
