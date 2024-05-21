@@ -11,6 +11,7 @@ import AddButton from './components/AddButton';
 import EntriesList from './components/EntriesList';
 import { useEffect, useState } from 'react';
 import Summary from './components/Summary';
+import { parseUTCDate } from './utils/dateUtils';
 
 export default function Home() {
   const [date, setDate] = useState(Date());
@@ -65,6 +66,10 @@ export default function Home() {
 
   const handleChange = (event) => {
     switch (event.target.name) {
+      case 'date':
+        let newDate = parseUTCDate(event.target.value)
+        setDate(newDate)
+        break
       case 'category':
         break;
       case 'value':
@@ -98,7 +103,6 @@ export default function Home() {
   async function onSubmit(event) {
     event.preventDefault();
     let dateString = `${date.getDate()}`;
-    console.log(dateString);
     let newEntry = {
       id: uuidv4(),
       date: dateString,
@@ -146,10 +150,17 @@ export default function Home() {
       {addModal ? (
         <div className={styles.formWrapper}>
           <form onSubmit={onSubmit} className={styles.form}>
+            {
+            //<label>
+            //  Date:
+            //  <Calendar onChange={setDate} value={date} />
+            //</form></label>
+            }
             <label>
               Date:
-              <Calendar onChange={setDate} value={date} />
+            <input type='date' name="date" onChange={handleChange}/>
             </label>
+
             <label>
               Description:
               <input
