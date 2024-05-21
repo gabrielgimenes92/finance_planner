@@ -6,7 +6,6 @@ const EntriesList = (props) => {
     <div className={styles.entryList}>
       <div className={styles.tableHead}>
         <ul>
-          <li>ID</li>
           <li>Date</li>
           <li>Description</li>
           <li>Category</li>
@@ -16,7 +15,6 @@ const EntriesList = (props) => {
       <div className={styles.entry}>
         {props.entryList.map((item) => (
           <ul key={item.id.toString()}>
-            <li>{item.id}</li>
             <li>{item.date}</li>
             <li>{item.description}</li>
             <li>{item.category}</li>
