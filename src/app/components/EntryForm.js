@@ -4,7 +4,9 @@ import styles from '../page.module.scss';
 const EntryForm = (props) => {
 
     return (
-      <div className={styles.formWrapper}>
+      <div className={styles.openModal}>
+       <div className={styles.overlay} onClick={props.toggleAddModal}/>
+       <div className={styles.formWrapper}>
         <form onSubmit={props.onSubmit} className={styles.form}>
           <label>
             Date:
@@ -40,6 +42,7 @@ const EntryForm = (props) => {
           </label>
           <button type="submit">submit</button>
         </form>
+       </div>
       </div>
     )
 

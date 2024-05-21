@@ -3,8 +3,6 @@
 import Image from 'next/image';
 import styles from './page.module.scss';
 import { v4 as uuidv4 } from 'uuid';
-//import DatePicker from 'react-date-picker';
-import Calendar from 'react-calendar';
 
 import Navbar from './components/Navbar';
 import AddButton from './components/AddButton';
@@ -69,7 +67,6 @@ export default function Home() {
     updateSummary();
   }
 
-
   const updateSummary = () => {
     let incomeTemp = 0;
     let expenseTemp = 0;
@@ -99,7 +96,7 @@ export default function Home() {
       </div>
       <AddButton toggleAddModal={toggleAddModal} />
       {addModal ? (
-       <EntryForm onSubmit={onSubmit} handleChange={handleChange}/>
+       <EntryForm onSubmit={onSubmit} handleChange={handleChange} toggleAddModal={toggleAddModal}/>
       ) : (
         <></>
       )}
