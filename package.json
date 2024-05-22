@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "deploy": "npm run build && touch ./out/.nojekyll && gh-pages -d out -t true"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.5.2",
@@ -14,11 +15,13 @@
     "@fortawesome/free-regular-svg-icons": "^6.5.2",
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "gh-pages": "^6.1.1",
     "next": "14.2.2",
     "react": "^18",
     "react-calendar": "^5.0.0",
     "react-date-picker": "^11.0.0",
     "react-dom": "^18",
+    "touch-cli": "^0.0.1",
     "uuid": "^9.0.1"
   },
   "devDependencies": {
