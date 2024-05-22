@@ -25,7 +25,7 @@ export default function Home() {
     expense: 0,
     total: 0,
   });
-  
+
   useEffect(() => {
     console.log('updated');
     updateSummary();
@@ -34,9 +34,9 @@ export default function Home() {
   const handleChange = (event) => {
     switch (event.target.name) {
       case 'date':
-        let newDate = parseUTCDate(event.target.value)
-        setDate(newDate)
-        break
+        let newDate = parseUTCDate(event.target.value);
+        setDate(newDate);
+        break;
       case 'category':
         break;
       case 'value':
@@ -84,6 +84,14 @@ export default function Home() {
     });
   };
 
+  const handleDelete = (index) => {
+    console.log(`Bip bop, deleted id:${index}`);
+    let newArray = entryList.filter((item) => item.id !== index);
+    console.log(newArray);
+    setEntryList(newArray);
+    updateSummary();
+  };
+
   return (
     <main className={styles.main}>
       <Navbar />
@@ -92,11 +100,15 @@ export default function Home() {
           <h1> &lt; Month &gt;</h1>
         </div>
         <Summary summary={summary} updateSummary={updateSummary} />
-        <EntriesList entryList={entryList} />
+        <EntriesList entryList={entryList} handleDelete={handleDelete} />
       </div>
       <AddButton toggleAddModal={toggleAddModal} />
       {addModal ? (
-       <EntryForm onSubmit={onSubmit} handleChange={handleChange} toggleAddModal={toggleAddModal}/>
+        <EntryForm
+          onSubmit={onSubmit}
+          handleChange={handleChange}
+          toggleAddModal={toggleAddModal}
+        />
       ) : (
         <></>
       )}

@@ -14,11 +14,16 @@ const EntriesList = (props) => {
       </div>
       <div className={styles.entry}>
         {props.entryList.map((item) => (
-          <ul key={item.id.toString()}>
+          <ul key={item.id}>
             <li>{item.date}</li>
             <li>{item.description}</li>
             <li>{item.category}</li>
             <li>{item.value}</li>
+            <li>
+              <button onClick={() => props.handleDelete(item.id)}>
+                delete
+              </button>
+            </li>
           </ul>
         ))}
       </div>
