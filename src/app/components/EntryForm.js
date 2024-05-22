@@ -1,11 +1,20 @@
 import React from 'react';
 import styles from '../page.module.scss';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faX } from '@fortawesome/free-solid-svg-icons';
+
 const EntryForm = (props) => {
   return (
     <div className={styles.openModal}>
       <div className={styles.overlay} onClick={props.toggleAddModal} />
       <div className={styles.formWrapper}>
+        <div className={styles.titleWrapper}>
+          <h2>New Entry</h2>
+          <div className={styles.closeButton}>
+            <FontAwesomeIcon icon={faX} onClick={props.toggleAddModal} />
+          </div>
+        </div>
         <form onSubmit={props.onSubmit} className={styles.form}>
           <label>
             Date:
@@ -38,7 +47,10 @@ const EntryForm = (props) => {
               onChange={props.handleChange}
             />
           </label>
-          <button type="submit">submit</button>
+          <div className={styles.horizontalButtons}>
+            <button onClick={props.toggleAddModal}>Cancel</button>
+            <button type="submit">Save</button>
+          </div>
         </form>
       </div>
     </div>

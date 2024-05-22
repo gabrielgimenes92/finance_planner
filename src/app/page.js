@@ -9,12 +9,12 @@ import AddButton from './components/AddButton';
 import EntriesList from './components/EntriesList';
 import { useEffect, useState } from 'react';
 import Summary from './components/Summary';
-import { parseUTCDate } from './utils/dateUtils';
+import { isDateValid, parseUTCDate } from './utils/dateUtils';
 import { dummyEntries } from './dummy/dummyData';
 import EntryForm from './components/EntryForm';
 
 export default function Home() {
-  const [date, setDate] = useState(Date());
+  const [date, setDate] = useState();
   const [value, setValue] = useState();
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
@@ -54,7 +54,6 @@ export default function Home() {
 
   async function onSubmit(event) {
     event.preventDefault();
-    //let dateString = `${date.getDate()}`;
     let newEntry = {
       id: uuidv4(),
       date: date,
@@ -62,7 +61,9 @@ export default function Home() {
       category: 'Monthly Basic',
       value: parseFloat(value),
     };
-    setEntryList((entryList) => [...entryList, newEntry]);
+    if (isDateValid(newEntry.date)) {
+      setEntryList((entryList) => [...entryList, newEntry]);
+    }
   }
 
   const updateSummary = () => {

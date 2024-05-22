@@ -48,6 +48,33 @@
     width: 600px;
     height: 100vh;
     background-color: #aaa;
+    color: black;
+
+    .titleWrapper {
+      margin: 2rem 1rem 1rem 1rem;
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-between;
+      align-items: center;
+
+      .closeButton {
+        background-color: #777;
+        height: 38px;
+        width: 38px;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        font-size: 18px;
+        cursor: pointer;
+      }
+
+      .closeButton:hover {
+        background-color: #666;
+        transition: background-color 0.3s;
+      }
+    }
 
     .form {
       padding: 2rem 1rem;
@@ -59,10 +86,22 @@
       label {
         display: flex;
         flex-flow: column;
+
+        input {
+          height: 2rem;
+          padding-left: .4rem;
+          font-size: 1rem;
+        }
+
+        select {
+          height: 2rem;
+          padding-left: .4rem;
+          font-size: 1rem;
+        }
       }
-  
       button {
-        flex: 1;
+        height: 3rem;
+        font-size: 1rem;
       }
     }
   }
@@ -173,4 +212,10 @@
 
 .addFloatingButton:hover {
   background-color: #555;
+}
+
+.horizontalButtons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
 }
