@@ -53,10 +53,10 @@ export default function Home() {
 
   async function onSubmit(event) {
     event.preventDefault();
-    let dateString = `${date.getDate()}`;
+    //let dateString = `${date.getDate()}`;
     let newEntry = {
       id: uuidv4(),
-      date: dateString,
+      date: date,
       description: description,
       category: 'Monthly Basic',
       value: parseFloat(value),
@@ -84,7 +84,6 @@ export default function Home() {
   const handleDelete = (index) => {
     let newArray = entryList.filter((item) => item.id !== index);
     setEntryList(newArray);
-    // updateSummary();
   };
 
   return (

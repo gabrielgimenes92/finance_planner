@@ -15,7 +15,7 @@ const EntriesList = (props) => {
       <div className={styles.entry}>
         {props.entryList.map((item) => (
           <ul key={item.id}>
-            <li>{item.date}</li>
+            <li>{item.date.getDate()}</li>
             <li>{item.description}</li>
             <li>{item.category}</li>
             <li>{item.value}</li>
