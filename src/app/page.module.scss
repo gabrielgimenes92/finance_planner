@@ -1,3 +1,5 @@
+
+
 .main {
   height: 100vh;
   display: flex;
@@ -218,4 +220,54 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
+}
+
+
+@media screen and (max-width: 600px) {
+  .entryList {  
+    .tableHead, .entry {
+      ul {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-evenly;
+        align-items: center;
+        gap: unset;
+
+        li {
+          display: flex;
+        }
+        
+        
+      }
+    }
+    }
+
+  .navbarWrapper {
+    width: 50px;
+
+    .logo {
+      border-radius: 50%;
+      margin-bottom: 48px ;
+    }
+  
+    .space {
+      flex: 1;
+    }
+  
+    .navbar {
+      li {
+        width: 32px;
+        height: 32px;
+      }
+    }
+  
+    .socialLinks {
+      li {
+        width: 16px;
+        height: 16px;
+        border-radius: 5px;
+      }
+    }
+  }
+
 }

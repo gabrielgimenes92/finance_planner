@@ -63,6 +63,7 @@ export default function Home() {
     };
     if (isDateValid(newEntry.date)) {
       setEntryList((entryList) => [...entryList, newEntry]);
+      toggleAddModal();
     }
   }
 
