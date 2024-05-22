@@ -27,7 +27,6 @@ export default function Home() {
   });
 
   useEffect(() => {
-    console.log('updated');
     updateSummary();
   }, [entryList]);
 
@@ -49,7 +48,6 @@ export default function Home() {
   };
 
   const toggleAddModal = () => {
-    console.log(addModal);
     setAddModal(!addModal);
   };
 
@@ -64,7 +62,6 @@ export default function Home() {
       value: parseFloat(value),
     };
     setEntryList((entryList) => [...entryList, newEntry]);
-    updateSummary();
   }
 
   const updateSummary = () => {
@@ -85,11 +82,9 @@ export default function Home() {
   };
 
   const handleDelete = (index) => {
-    console.log(`Bip bop, deleted id:${index}`);
     let newArray = entryList.filter((item) => item.id !== index);
-    console.log(newArray);
     setEntryList(newArray);
-    updateSummary();
+    // updateSummary();
   };
 
   return (
