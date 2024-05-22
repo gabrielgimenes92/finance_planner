@@ -16,8 +16,6 @@ const Summary = (props) => {
         <h2>Total</h2>
         <p>{props.summary.total}</p>
       </div>
-
-      <button onClick={props.updateSummary}>Update value</button>
     </div>
   );
 };
