@@ -37,6 +37,7 @@ export default function Home() {
         setDate(newDate);
         break;
       case 'category':
+        setCategory(event.target.value);
         break;
       case 'value':
         setValue(event.target.value);

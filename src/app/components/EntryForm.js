@@ -2,15 +2,14 @@ import React from 'react';
 import styles from '../page.module.scss';
 
 const EntryForm = (props) => {
-
-    return (
-      <div className={styles.openModal}>
-       <div className={styles.overlay} onClick={props.toggleAddModal}/>
-       <div className={styles.formWrapper}>
+  return (
+    <div className={styles.openModal}>
+      <div className={styles.overlay} onClick={props.toggleAddModal} />
+      <div className={styles.formWrapper}>
         <form onSubmit={props.onSubmit} className={styles.form}>
           <label>
             Date:
-          <input type='date' name="date" onChange={props.handleChange}/>
+            <input type="date" name="date" onChange={props.handleChange} />
           </label>
           <label>
             Description:
@@ -23,12 +22,11 @@ const EntryForm = (props) => {
           </label>
           <label>
             Category:
-            <select>
-              {/* value={this.state.value} onChange={this.handleChange} */}
-              <option value="grapefruit">Grapefruit</option>
-              <option value="lime">Lime</option>
-              <option value="coconut">Coconut</option>
-              <option value="mango">Mango</option>
+            <select onChange={props.handleChange}>
+              <option value="Groceries">Groceries</option>
+              <option value="Salary">Salary</option>
+              <option value="Monthly Basic">Monthly Basic</option>
+              <option value="Other">Other</option>
             </select>
           </label>
           <label>
@@ -42,11 +40,9 @@ const EntryForm = (props) => {
           </label>
           <button type="submit">submit</button>
         </form>
-       </div>
       </div>
-    )
-
-
-}
+    </div>
+  );
+};
 
 export default EntryForm;
