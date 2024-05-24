@@ -3,6 +3,7 @@ import styles from '../page.module.scss';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faX } from '@fortawesome/free-solid-svg-icons';
+import { formatedCurrentDate } from '../utils/dateUtils';
 
 const EntryForm = (props) => {
   return (
@@ -18,7 +19,12 @@ const EntryForm = (props) => {
         <form onSubmit={props.onSubmit} className={styles.form}>
           <label>
             Date:
-            <input type="date" name="date" onChange={props.handleChange} />
+            <input
+              type="date"
+              name="date"
+              onChange={props.handleChange}
+              defaultValue={`${formatedCurrentDate()}`}
+            />
           </label>
           <label>
             Description:

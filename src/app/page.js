@@ -9,12 +9,12 @@ import AddButton from './components/AddButton';
 import EntriesList from './components/EntriesList';
 import { useEffect, useState } from 'react';
 import Summary from './components/Summary';
-import { isDateValid, parseUTCDate } from './utils/dateUtils';
+import { currentDate, isDateValid, parseUTCDate } from './utils/dateUtils';
 import { dummyEntries } from './dummy/dummyData';
 import EntryForm from './components/EntryForm';
 
 export default function Home() {
-  const [date, setDate] = useState();
+  const [date, setDate] = useState(currentDate);
   const [value, setValue] = useState();
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');

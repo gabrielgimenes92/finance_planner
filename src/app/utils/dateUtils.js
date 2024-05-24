@@ -5,3 +5,24 @@ export const parseUTCDate = (dateString) => {
 export const isDateValid = (dateStr) => {
   return !isNaN(new Date(dateStr));
 };
+
+export const currentDate = new Date();
+
+export const formatedCurrentDate = () => {
+  let monthPlusOne = currentDate.getMonth() + 1;
+  let month = '';
+  let day = '';
+  if (currentDate.getDate < 10) {
+    day = `${currentDate.getDate()}`;
+    console.log(day);
+  } else {
+    day = `${currentDate.getDate()}`;
+  }
+  if (monthPlusOne < 10) {
+    month = `0${monthPlusOne}`;
+  } else {
+    month = `${monthPlusOne}`;
+  }
+
+  return `${currentDate.getFullYear()}-${month}-${day}`;
+};
