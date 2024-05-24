@@ -162,10 +162,10 @@
 .entryList {  
   .tableHead {
     ul {
-      max-width: 1200px;
+      max-width: 1000px;
       margin: 1rem auto;
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+      grid-template-columns: 0.4fr 1fr 0.6fr 0.3fr auto;
       gap: 3rem;
       font-weight: 700;
       
@@ -178,17 +178,33 @@
   .entry {
 
     ul {
-      max-width: 1200px;
+      max-width: 1000px;
       margin: 0.25rem auto;
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+      grid-template-columns: 0.4fr 1fr 0.6fr  0.3fr auto;
       gap: 3rem;
 
       li {
         list-style-type: none;
       }
-    }
 
+      .editButton {
+        padding: 0.2rem;
+        border: 1px solid #3592FF;
+        border-radius: 4px;
+        color: #3592FF;
+        margin-right: 0.8rem;
+        cursor:not-allowed;
+      }
+      
+      .deleteButton {
+        padding: 0.2rem;
+        border: 1px solid #D80404;
+        border-radius: 4px;
+        color: #D80404;
+        cursor: pointer;
+      }
+    }
   }
 }
 
