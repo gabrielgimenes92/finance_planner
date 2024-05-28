@@ -9,13 +9,15 @@ import AddButton from './components/AddButton';
 import EntriesList from './components/EntriesList';
 import { useEffect, useState } from 'react';
 import Summary from './components/Summary';
-import { currentDate, isDateValid, parseUTCDate } from './utils/dateUtils';
+import { isDateValid, parseUTCDate } from './utils/dateUtils';
 import { dummyEntries } from './dummy/dummyData';
 import EntryForm from './components/EntryForm';
 
 export default function Home() {
-  const [currentMonth, setCurrentMonth] = useState(currentDate);
-  const [selectedMonth, setSelectedMonth] = useState(currentMonth);
+  const currentDate = new Date();
+
+  // const [currentDate, setCurrentDate] = useState(new Date());
+  const [selectedMonth, setSelectedMonth] = useState(currentDate);
   const [date, setDate] = useState(currentDate);
   const [value, setValue] = useState();
   const [description, setDescription] = useState('');
@@ -27,6 +29,8 @@ export default function Home() {
     expense: 0,
     total: 0,
   });
+
+  // console.log(`This is in page: ${currentDate}`);
 
   useEffect(() => {
     updateSummary();
@@ -52,6 +56,7 @@ export default function Home() {
 
   const toggleAddModal = () => {
     setAddModal(!addModal);
+    // console.log(currentDate);
   };
 
   async function onSubmit(event) {
@@ -75,12 +80,12 @@ export default function Home() {
       case 'add':
         newMonth = selectedMonth.setMonth(selectedMonth.getMonth() + 1);
         setSelectedMonth(new Date(newMonth));
-        updateSummary();
         break;
       case 'subtract':
         newMonth = selectedMonth.setMonth(selectedMonth.getMonth() - 1);
         setSelectedMonth(new Date(newMonth));
-        updateSummary();
+        // console.log(`Selected Month: ${selectedMonth}`);
+        // console.log(`Current Date: ${currentDate}`);
         break;
     }
   };
@@ -141,7 +146,11 @@ export default function Home() {
             &gt;
           </h1>
         </div>
-        <Summary summary={summary} updateSummary={updateSummary} />
+        <Summary
+          summary={summary}
+          updateSummary={updateSummary}
+          filteredEntryList={filteredEntryList}
+        />
         <EntriesList
           filteredEntryList={filteredEntryList}
           handleDelete={handleDelete}
@@ -154,6 +163,7 @@ export default function Home() {
           onSubmit={onSubmit}
           handleChange={handleChange}
           toggleAddModal={toggleAddModal}
+          currentDate={currentDate}
         />
       ) : (
         <></>

@@ -56,5 +56,12 @@ export const dummyEntries = () => {
       category: 'Salary',
       value: 1000.0,
     },
+    {
+      id: 9,
+      date: new Date('2024-07-3 GMT-7'),
+      description: 'Salary',
+      category: 'Salary',
+      value: 1000.0,
+    },
   ];
 };
