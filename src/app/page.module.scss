@@ -13,8 +13,16 @@
     color: black;
 
     .selectedMonth {
+      display: flex;
+      flex-flow: row nowrap;
+      width: 300px;
+      justify-content: space-between;
       max-width: 1200px;
       margin: 0 auto;
+
+      .selectMonthButton {
+        cursor: pointer;
+      }
     }
 
     .summary {

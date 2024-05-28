@@ -14,6 +14,8 @@ import { dummyEntries } from './dummy/dummyData';
 import EntryForm from './components/EntryForm';
 
 export default function Home() {
+  const [currentMonth, setCurrentMonth] = useState(currentDate);
+  const [selectedMonth, setSelectedMonth] = useState(currentMonth);
   const [date, setDate] = useState(currentDate);
   const [value, setValue] = useState();
   const [description, setDescription] = useState('');
@@ -67,10 +69,26 @@ export default function Home() {
     }
   }
 
+  const handleMonthChange = (event) => {
+    let newMonth = 0;
+    switch (event.target.getAttribute('name')) {
+      case 'add':
+        newMonth = selectedMonth.setMonth(selectedMonth.getMonth() + 1);
+        setSelectedMonth(new Date(newMonth));
+        updateSummary();
+        break;
+      case 'subtract':
+        newMonth = selectedMonth.setMonth(selectedMonth.getMonth() - 1);
+        setSelectedMonth(new Date(newMonth));
+        updateSummary();
+        break;
+    }
+  };
+
   const updateSummary = () => {
     let incomeTemp = 0;
     let expenseTemp = 0;
-    entryList.forEach((element) => {
+    filteredEntryList.forEach((element) => {
       if (element.value < 0) {
         expenseTemp += element.value;
       } else {
@@ -89,15 +107,46 @@ export default function Home() {
     setEntryList(newArray);
   };
 
+  let filteredEntryList = entryList.filter(function (entryList) {
+    if (
+      entryList.date.getMonth() == selectedMonth.getMonth() &&
+      entryList.date.getFullYear() == selectedMonth.getFullYear()
+    )
+      return entryList.date.getMonth() == selectedMonth.getMonth();
+  });
+
   return (
     <main className={styles.main}>
       <Navbar />
       <div className={styles.mainContent}>
         <div className={styles.selectedMonth}>
-          <h1> &lt; Month &gt;</h1>
+          <h1
+            name="subtract"
+            className={styles.selectMonthButton}
+            onClick={handleMonthChange}
+          >
+            &lt;
+          </h1>
+          <h1>
+            {selectedMonth.toLocaleDateString('en-us', {
+              month: 'short',
+              year: 'numeric',
+            })}
+          </h1>
+          <h1
+            name="add"
+            className={styles.selectMonthButton}
+            onClick={handleMonthChange}
+          >
+            &gt;
+          </h1>
         </div>
         <Summary summary={summary} updateSummary={updateSummary} />
-        <EntriesList entryList={entryList} handleDelete={handleDelete} />
+        <EntriesList
+          filteredEntryList={filteredEntryList}
+          handleDelete={handleDelete}
+          selectedMonth={selectedMonth}
+        />
       </div>
       <AddButton toggleAddModal={toggleAddModal} />
       {addModal ? (

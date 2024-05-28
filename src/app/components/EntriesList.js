@@ -21,7 +21,7 @@ const EntriesList = (props) => {
         </ul>
       </div>
       <div className={styles.entry}>
-        {props.entryList.map((item) => (
+        {props.filteredEntryList.map((item) => (
           <ul key={item.id}>
             <li>
               {item.date.toLocaleDateString('en-us', {
