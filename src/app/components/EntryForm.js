@@ -6,8 +6,6 @@ import { faX } from '@fortawesome/free-solid-svg-icons';
 import { formatedCurrentDate } from '../utils/dateUtils';
 
 const EntryForm = (props) => {
-  // console.log(`This is in the Entry Form: ${props.currentDate}`);
-
   return (
     <div className={styles.openModal}>
       <div className={styles.overlay} onClick={props.toggleAddModal} />

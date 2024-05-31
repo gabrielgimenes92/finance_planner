@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import styles from './page.module.scss';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -16,7 +15,6 @@ import EntryForm from './components/EntryForm';
 export default function Home() {
   const currentDate = new Date();
 
-  // const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedMonth, setSelectedMonth] = useState(currentDate);
   const [date, setDate] = useState(currentDate);
   const [value, setValue] = useState();
@@ -24,17 +22,17 @@ export default function Home() {
   const [category, setCategory] = useState('');
   const [addModal, setAddModal] = useState(false);
   const [entryList, setEntryList] = useState(dummyEntries);
+  const [filteredEntryList, setFilteredEntryList] = useState(dummyEntries)
   const [summary, setSummary] = useState({
     income: 0,
     expense: 0,
     total: 0,
   });
 
-  // console.log(`This is in page: ${currentDate}`);
-
   useEffect(() => {
+    filterList();
     updateSummary();
-  }, [entryList]);
+  }, [filteredEntryList]);
 
   const handleChange = (event) => {
     switch (event.target.name) {
@@ -56,7 +54,6 @@ export default function Home() {
 
   const toggleAddModal = () => {
     setAddModal(!addModal);
-    // console.log(currentDate);
   };
 
   async function onSubmit(event) {
@@ -84,13 +81,11 @@ export default function Home() {
       case 'subtract':
         newMonth = selectedMonth.setMonth(selectedMonth.getMonth() - 1);
         setSelectedMonth(new Date(newMonth));
-        // console.log(`Selected Month: ${selectedMonth}`);
-        // console.log(`Current Date: ${currentDate}`);
         break;
     }
   };
 
-  const updateSummary = () => {
+ const updateSummary = async () => {
     let incomeTemp = 0;
     let expenseTemp = 0;
     filteredEntryList.forEach((element) => {
@@ -112,13 +107,16 @@ export default function Home() {
     setEntryList(newArray);
   };
 
-  let filteredEntryList = entryList.filter(function (entryList) {
-    if (
-      entryList.date.getMonth() == selectedMonth.getMonth() &&
-      entryList.date.getFullYear() == selectedMonth.getFullYear()
-    )
-      return entryList.date.getMonth() == selectedMonth.getMonth();
-  });
+  const filterList = () => {
+    let newFilteredList = entryList.filter(function (entryList) {
+      if (
+        entryList.date.getMonth() == selectedMonth.getMonth() &&
+        entryList.date.getFullYear() == selectedMonth.getFullYear()
+      )
+        return entryList.date.getMonth() == selectedMonth.getMonth();
+    });
+    setFilteredEntryList(newFilteredList)
+  }
 
   return (
     <main className={styles.main}>
