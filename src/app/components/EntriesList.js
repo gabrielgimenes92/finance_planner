@@ -16,7 +16,7 @@ const EntriesList = (props) => {
           <li>Date</li>
           <li>Description</li>
           <li>Category</li>
-          <li>Value</li>
+          <li className={styles.value}>Value</li>
           <li>Actions</li>
         </ul>
       </div>
@@ -32,12 +32,11 @@ const EntriesList = (props) => {
             </li>
             <li>{item.description}</li>
             <li>{item.category}</li>
-            <li>{item.value}</li>
+            <li className={styles.value}>{item.value.toFixed(2)}</li>
             <li>
               <FontAwesomeIcon
                 className={styles.editButton}
                 icon={faPenToSquare}
-                // onClick={() => props.handleDelete(item.id)}
               />
               <FontAwesomeIcon
                 className={styles.deleteButton}

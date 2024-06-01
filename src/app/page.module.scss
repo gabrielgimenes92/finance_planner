@@ -180,6 +180,10 @@
       li {
         list-style-type: none;
       }
+  
+      .value {
+        text-align: center;
+      }
     }
   }
 
@@ -194,6 +198,10 @@
 
       li {
         list-style-type: none;
+      }
+
+      .value {
+        text-align: end;
       }
 
       .editButton {
