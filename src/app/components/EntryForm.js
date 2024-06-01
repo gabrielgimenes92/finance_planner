@@ -39,8 +39,8 @@ const EntryForm = (props) => {
             Category:
             <select onChange={props.handleChange}>
               <option value="Groceries">Groceries</option>
-              <option value="Salary">Salary</option>
-              <option value="Monthly Basic">Monthly Basic</option>
+              <option value="Paycheck">Paycheck</option>
+              <option value="Monthly">Monthly</option>
               <option value="Other">Other</option>
             </select>
           </label>
