@@ -32,7 +32,7 @@ export default function Home() {
   useEffect(() => {
     filterList();
     updateSummary();
-  }, [filteredEntryList]);
+  }, [filteredEntryList, selectedMonth]);
 
   const handleChange = (event) => {
     switch (event.target.name) {
@@ -42,6 +42,7 @@ export default function Home() {
         break;
       case 'category':
         setCategory(event.target.value);
+        console.log(category)
         break;
       case 'value':
         setValue(event.target.value);
@@ -62,7 +63,7 @@ export default function Home() {
       id: uuidv4(),
       date: date,
       description: description,
-      category: 'Monthly Basic',
+      category: category,
       value: parseFloat(value),
     };
     if (isDateValid(newEntry.date)) {
@@ -75,10 +76,13 @@ export default function Home() {
     let newMonth = 0;
     switch (event.target.getAttribute('name')) {
       case 'add':
+        newMonth = selectedMonth.setDate(1);
         newMonth = selectedMonth.setMonth(selectedMonth.getMonth() + 1);
+        console.log(newMonth)
         setSelectedMonth(new Date(newMonth));
         break;
       case 'subtract':
+        newMonth = selectedMonth.setDate(1);
         newMonth = selectedMonth.setMonth(selectedMonth.getMonth() - 1);
         setSelectedMonth(new Date(newMonth));
         break;
