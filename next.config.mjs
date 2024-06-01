@@ -2,8 +2,8 @@
 const nextConfig = {
   output: 'export',
   images: { unoptimized: true },
-  // basePath: '/finance_planner_frontend',
-  // assetPrefix: '/finance_planner_frontend',
+  // basePath: '/finance_tracker_frontend',
+  // assetPrefix: '/finance_tracker_frontend',
 };
 
 export default nextConfig;

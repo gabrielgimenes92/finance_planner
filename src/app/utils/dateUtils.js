@@ -12,20 +12,20 @@ export const isDateValid = (dateStr) => {
 
 export const formatedCurrentDate = (currentDate) => {
   // console.log(`This is in the Date Utils: ${currentDate}`);
-  let monthPlusOne = currentDate.getMonth() + 1;
+  let localMonthPlusOne = currentDate.getMonth() + 1;
+  let localDay = currentDate.getDate()
   let month = '';
   let day = '';
-  if (currentDate.getDate < 10) {
-    day = `${currentDate.getDate()}`;
-    console.log(day);
+  // console.log(parseInt(currentDate.getDate()))
+  if (localDay < 10) {
+    day = `0${localDay}`;
   } else {
-    day = `${currentDate.getDate()}`;
+    day = `${localDay}`;
   }
-  if (monthPlusOne < 10) {
-    month = `0${monthPlusOne}`;
+  if (localMonthPlusOne < 10) {
+    month = `0${localMonthPlusOne}`;
   } else {
-    month = `${monthPlusOne}`;
+    month = `${localMonthPlusOne}`;
   }
-
   return `${currentDate.getFullYear()}-${month}-${day}`;
 };
