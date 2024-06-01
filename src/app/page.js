@@ -30,9 +30,10 @@ export default function Home() {
   });
 
   useEffect(() => {
-    filterList();
-    updateSummary();
-  }, [filteredEntryList, selectedMonth]);
+    filterList()
+    .then(updateSummary())
+  }, [selectedMonth, filteredEntryList]);
+
 
   const handleChange = (event) => {
     switch (event.target.name) {
@@ -42,7 +43,6 @@ export default function Home() {
         break;
       case 'category':
         setCategory(event.target.value);
-        console.log(category)
         break;
       case 'value':
         setValue(event.target.value);
@@ -72,13 +72,12 @@ export default function Home() {
     }
   }
 
-  const handleMonthChange = (event) => {
+  const handleMonthChange = async (event) => {
     let newMonth = 0;
     switch (event.target.getAttribute('name')) {
       case 'add':
         newMonth = selectedMonth.setDate(1);
         newMonth = selectedMonth.setMonth(selectedMonth.getMonth() + 1);
-        console.log(newMonth)
         setSelectedMonth(new Date(newMonth));
         break;
       case 'subtract':
@@ -112,14 +111,18 @@ export default function Home() {
   };
 
   const filterList = () => {
-    let newFilteredList = entryList.filter(function (entryList) {
-      if (
-        entryList.date.getMonth() == selectedMonth.getMonth() &&
-        entryList.date.getFullYear() == selectedMonth.getFullYear()
-      )
-        return entryList.date.getMonth() == selectedMonth.getMonth();
-    });
-    setFilteredEntryList(newFilteredList)
+    return new Promise(() => {
+      setTimeout(() => {
+        let newFilteredList = entryList.filter(function (entryList) {
+          if (
+            entryList.date.getMonth() == selectedMonth.getMonth() &&
+            entryList.date.getFullYear() == selectedMonth.getFullYear()
+          )
+            return entryList.date.getMonth() == selectedMonth.getMonth();
+        });
+        setFilteredEntryList(newFilteredList)
+      }, 100);
+    })
   }
 
   return (
