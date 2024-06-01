@@ -3,12 +3,16 @@ import styles from '../page.module.scss';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBurger } from '@fortawesome/free-solid-svg-icons';
+import profilePicture from "../dummy/profilePicture.jpg";
+import Image from 'next/image';
 
 const Navbar = () => {
   return (
     <div>
       <nav className={styles.navbarWrapper}>
-        <img src="https://picsum.photos/48" alt="" className={styles.logo} />
+        <Image src={profilePicture} className={styles.logo}
+              height={48}
+              width={48}/>
         <ul className={styles.navbar}>
           <li>
             <a href="#"></a>
