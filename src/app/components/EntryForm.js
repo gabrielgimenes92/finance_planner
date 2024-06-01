@@ -37,7 +37,7 @@ const EntryForm = (props) => {
           </label>
           <label>
             Category:
-            <select onChange={props.handleChange}>
+            <select name="category" onChange={props.handleChange}>
               <option value="Groceries">Groceries</option>
               <option value="Paycheck">Paycheck</option>
               <option value="Monthly">Monthly</option>

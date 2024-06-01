@@ -32,6 +32,7 @@ export default function Home() {
   useEffect(() => {
     filterList()
     .then(updateSummary())
+    // console.log(filteredEntryList)
   }, [selectedMonth, filteredEntryList]);
 
 
@@ -67,6 +68,7 @@ export default function Home() {
       value: parseFloat(value),
     };
     if (isDateValid(newEntry.date)) {
+      console.log(newEntry)
       setEntryList((entryList) => [...entryList, newEntry]);
       toggleAddModal();
     }
@@ -169,6 +171,7 @@ export default function Home() {
           handleChange={handleChange}
           toggleAddModal={toggleAddModal}
           currentDate={currentDate}
+          category={category}
         />
       ) : (
         <></>
